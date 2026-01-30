@@ -1,0 +1,999 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<!-- Mirrored from stove-city-store.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Dec 2025 16:15:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>LINE CITY RP STORE</title>
+<style>
+/* ===== Reset & base ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background: linear-gradient(180deg,#070707 0%, #0c0c0d 100%);
+  color:#e31809;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  direction: rtl;
+  line-height:1.5;
+  padding:28px;
+}
+
+/* ===== Variables ===== */
+:root{
+  --orange:#959090b4;
+  --orange-2:#4a464639;
+  --muted:#ffffff;
+  --card:#0f1113;
+  --glass: rgba(255,255,255,0.03);
+  --accent-shadow: 0 10px 30px rgba(255,106,0,0.12);
+  --radius:14px;
+}
+
+/* ===== Layout ===== */
+.site{max-width:1150px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+
+/* ===== Header ===== */
+.header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03)}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--orange),var(--orange-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#111;box-shadow:var(--accent-shadow);font-family:'Segoe UI', Tahoma, Arial, sans-serif}
+.brand .title{font-size:18px;font-weight:800;color:#bfbdd4}
+.brand .sub{font-size:12px;color:var(--muted)}
+
+/* ===== Tabs nav ===== */
+.tabs{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tab-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;transition:all .28s ease;backdrop-filter: blur(6px)}
+.tab-btn:hover{transform:translateY(-4px)}
+.tab-btn.active{background:linear-gradient(90deg,var(--orange),var(--orange-2));color:#0ce93c;box-shadow:var(--accent-shadow);border:0}
+
+/* small admin button */
+.admin-btn{background:transparent;border:1px dashed rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+/* ===== Content area ===== */
+.content{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03);min-height:520px;position:relative;overflow:hidden}
+.section{display:none;opacity:0;transform:translateY(12px);transition:all .38s cubic-bezier(.2,.9,.2,1)}
+.section.active{display:block;opacity:1;transform:none}
+
+/* ===== Home layout ===== */
+.hero{display:grid;grid-template-columns:1fr 400px;gap:18px;align-items:start}
+.hero .left h1{font-size:30px;color:#85859d;margin-bottom:8px}
+.lead{color:var(--muted);margin-bottom:14px}
+.actions{display:flex;gap:10px;margin-bottom:16px}
+.btn{padding:10px 16px;border-radius:10px;border:0;font-weight:800;cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,var(--orange),var(--orange-2));color:#5e5e5e;box-shadow:var(--accent-shadow)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
+
+/* preview card */
+.preview{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);text-align:center}
+.preview .img{height:260px;border-radius:10px;background:linear-gradient(180deg,#071018,#08121a);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:800}
+
+/* info row */
+.info-row{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+.info-card{flex:1;min-width:160px;background:var(--glass);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);color:var(--muted)}
+
+/* ===== Jobs & tests ===== */
+.jobs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.job-card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:10px}
+.job-card h3{color:#f7f2f2}
+.job-card .meta{color:var(--muted);font-size:13px}
+.job-actions{display:flex;gap:8px;margin-top:auto;}
+
+/* test area */
+.test-area{margin-top:12px;background:var(--glass);padding:12px;border-radius:10px}
+.input-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.input-row input[type="text"]{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff}
+
+/* result badge */
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-weight:700}
+
+/* modal */
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:60;opacity:0;pointer-events:none;transition:opacity .18s ease}
+.modal-back.open{opacity:1;pointer-events:all}
+.modal{width:820px;max-width:96%;background:linear-gradient(180deg,#0a0d0f,#071018);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+.modal h3{margin-bottom:8px}
+.modal p{color:var(--muted);margin-bottom:12px}
+
+/* admin table */
+.table{width:100%;border-collapse:collapse;margin-top:8px}
+.table th,.table td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:right;color:var(--muted);font-size:13px}
+.table th{color:#5e4848}
+
+/* small controls */
+.small-btn{padding:6px 8px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+.small-btn.warning{background:#dbd9d7;color:#111}
+.small-btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+.small-btn.success{background:#2ecc71;color:#061b0a}
+
+/* responsive */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .jobs-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .jobs-grid{grid-template-columns:1fr}
+  .header{flex-direction:column;align-items:flex-start;gap:12px}
+  .tabs{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<div class="site" role="main">
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <img src="img/sv%20img2.png" alt="">
+        <svg width="42" height="42" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0" y="0" width="100" height="100" rx="18" fill="url(#g)"/>
+          <defs>
+            <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#ff6a00"/><stop offset="1" stop-color="#ff8a3d"/></linearGradient>
+          </defs>
+          <text x="50" y="80" text-anchor="middle" font-family="Segoe UI, Arial" font-weight="800" font-size="80" fill="#111">SV</text>
+        </svg>
+      </div>
+      <div>
+        <div class="title">LINE CITY</div>
+        <div class="sub">متجر سيرفر LINE CITY</div>
+      </div>
+    </div>
+
+    <nav class="tabs" role="navigation" aria-label="تنقل الموقع">
+      <button class="tab-btn active" data-tab="home">الرئيسية</button>
+      <button class="tab-btn" data-tab="shop">المتجر</button>
+      <button class="tab-btn" data-tab="jobs">الوظائف</button>
+      <button class="tab-btn" data-tab="rules_general">القوانين العام</button>
+      <button class="tab-btn" data-tab="rules_military">قوانين العسكريه</button>
+      <button class="tab-btn" data-tab="rules_crime">قوانين الاجرام</button>
+      <button class="tab-btn" data-tab="exam">الاختبار الالكتروني</button>
+      <button class="admin-btn" id="openAdmin">sv manger</button>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <main class="content" role="main">
+    <!-- Home -->
+    <section id="home" class="section active" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="left">
+          <h1 id="home-title">مرحبًا في متجر LINE CITY</h1>
+          <p class="lead">عرض احترافي للمنتجات + نظام وظائف مع اختبارات مخصصة </p>
+          <div class="actions">
+            <button class="btn primary" onclick="openTab('jobs')">الوظائف </button>
+            <button class="btn ghost" onclick="openTab('shop')"> المتجر</button>
+            
+          </div>
+
+            <div class="info-row">
+            <div class="info-card"><strong>طاقم العمل</strong><div id="team" style="margin-top:6px;color:var(--muted)">من قامو بل تعب من اجل متعتكم</div></div>
+          </div>
+          
+          <div class="info-row">
+            <div class="info-card"><strong>OWNERS</strong><div id="server-status" style="margin-top:6px;color:var(--muted)">جارٍ التحقق...</div></div>
+            <div class="info-card"><strong>DEV</strong><div id="player-count" style="margin-top:6px;color:var(--muted)">—</div></div>
+            <div class="info-card"><strong>ديسكورد</strong><div style="margin-top:6px"><a id="discord-link" href="#" style="color:var(--orange);font-weight:800;text-decoration:none"target="_blank">اضغط للانضمام</a></div></div>
+          </div>
+        </div>
+
+        <aside class="preview">
+          <div class="img" aria-hidden="true"><img src="img/sv%20img.png" alt=""></div>
+          <div style="margin-top:10px;color:var(--muted)"></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Shop -->
+    <section id="shop" class="section" aria-labelledby="shop-title">
+      <h2 id="shop-title" style="margin-bottom:12px">المتجر — عرض المنتجات</h2>
+      <p style="color:var(--muted);margin-bottom:14px">قائمة المنتجات للعرض فقط — للطلب توجه الى الدسكورد</p><a <a href="https://discord.gg/lcrp" target="_blank">
+    <button>للطب الرجاء التوجه للدسكورد</button>
+</a>
+
+      <div class="jobs-grid products" role="list">
+        <article class="product job-card" role="listitem">
+          <div class="prod-img"><img src="img/SHAR1.png" alt=""></div>
+          <h3>تشارجر</h3>
+          <div class="meta">10 دولار</div>
+          <div class="job-actions">
+            <button class="btn primary" onclick="openProduct('سياره تشارجر السعر 10 دولار ')">عرض</button>
+          </div>
+        </article>
+
+        <article class="product job-card" role="listitem">
+          <div class="prod-img"><img src="img/MASTO1.png" alt=""></div>
+          <h3>ميستوبيشي</h3>
+          <div class="meta">5 دولار </div>
+          <div class="job-actions">
+            <button class="btn primary" onclick="openProduct('سياره ميستوبيشي السعر 5 دولار ')">عرض</button>
+          </div>
+        </articl>
+
+      </div>
+    </section>
+
+    <!-- Jobs (وظائف) -->
+    <section id="jobs" class="section" aria-labelledby="jobs-title">
+      <h2 id="jobs-title">الوظائف والاختبارات</h2>
+      <p style="color:var(--muted);margin-bottom:12px">عند الاختبار سجل اسمك في الدسكورد لضمان قبولك</p>
+
+      <div class="jobs-grid" id="jobsGrid">
+        <!-- سيُملأ ديناميكيًا من JS -->
+      </div>
+
+      <!-- test container -->
+      <div id="testContainer" class="test-area" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div>
+            <strong id="testJobTitle">اسم الوظيفة</strong>
+            <div style="color:var(--muted);font-size:13px" id="testJobDesc">وصف الوظيفة</div>
+          </div>
+          <div>
+            <span class="badge">حالة: <span id="attemptStatus">لم تبدأ</span></span>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" id="userEntry">
+          <div class="input-row">
+            <input id="applicantName" type="text" placeholder="اكتب يوزر نيم الدسكورد  (مثال: e9f8)" aria-label="اسم المتقدم">
+            <button class="btn primary" id="startTestBtn">ابدأ الاختبار</button>
+            <button class="btn ghost" id="cancelTestBtn">إلغاء</button>
+          </div>
+          <div style="color:var(--muted);font-size:13px">بمجرد الإرسال، الاختبار يُسجّل ولا يمكن إعادة المحاولة إلا بإذن الإدارة.</div>
+        </div>
+
+        <form id="testForm" style="display:none" onsubmit="return false" aria-live="polite">
+          <div id="questionsWrap"></div>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn primary" id="submitTestBtn">أرسل الإجابات</button>
+            <button class="btn ghost" id="resetTestBtn" type="reset">إعادة</button>
+          </div>
+          <div id="testResult" style="margin-top:12px;color:var(--muted)"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Rules General -->
+    <section id="rules_general" class="section" aria-labelledby="rules_general_title">
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:20px">
+        <div style="background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
+          <h2 id="rules_general_title">القوانين العامة</h2>
+          <ol style="margin-top:12px;color:var(--muted)">
+            
+<li>ممنوع يكون اسم شخصيه مشهور مثال: (رونالدو) . ( ميسي ) الخ….<li>
+
+<li>ممنوع منعاً باتاً الستريم سنايب أو متابعة البثوث أثناء اللعب وعقوبتها باند اسبوع.<li>
+
+<li>ممنوع منعاً باتاً التواصل الغير شرعي على جميع اللاعبين.<li>
+
+<li>ممنوع الاعتداء على المدنين ( البوتات ) لأي سبب كان ويجب ان تعتبره مواطن ويتم تطبيق القوانين عليه.<li>
+
+<li>يمنع طلب تعويض في حال راحت فلوسك او أسلحتك او أغراضك بسبب التحلل أو نقلك إلى المستشفى.<li>
+
+<li>يسمح طلب تعويض في حالة القلتش و المشاكل البرمجية<li>
+
+<li>ممنوع الكتابة خارج “الرول بلاي” في جميع تطبيقات الجوال + ME/.<li>
+
+<li>ممنوع الدخول فى أى سناريو الا إذا كانت بينكم معرفه داخل الرول بلاي .<li>
+
+<li>ممنوع القذف بالأعراض والشتم والكلام البذيء والكلام الطائفي أو السياسي أو الديني أو القبلي ويعتبر مخالف وعقبوتها الباند النهائي المباشر دون تحذير.<li>
+
+<li>يمنع طلب الشرطة او منسوبي العدل والصحه بغرض خطفهم او قتلهم او سرقتهم.<li>
+
+<li>يمنع منعاً باتاً توزيع الفلوس أو التسليف أو ما شابه بين اللاعبين بمبالغ كبيرة (فوق ال30 الف ) .<li>
+
+<li>ممنوع منعاً باتاً ‌ ‌قتل‌ ‌الأشخاص‌ ‌في‌ ‌حال‌ ‌كانوا‌ ‌ينفذون‌ ‌الأوامر‌ ‌او‌ ‌بحجة‌ ‌النسيان.<li>
+
+<li>مشاركتك لأي من معلوماتك او حساباتك الشخصية ( ستيم – دسكورد الخ ...) مع اي شخص كان وإستخدامها للدخول إلى السيرفر يعرضكم جميعا للباند .<li>
+
+<li>يمنع أن تحمل شخصين في نفس الوقت – ( حمل + سحب ) مهما كانت الاسباب.<li>
+
+
+<li>تنبيه على القيادة الغير واقعية في حال تم رصد أي مواطن يقود مركبته بطريقة غير واقعية ( سرعة بدون سبب – قفز من اماكن مرتفعة)<li>
+
+<li>إشارات بدون سبب – تهور في القيادة بدون سبب ) وغير ذلك … سيكون عليها ورن.<li>
+
+<li>يحق للرقابة المحاسبة على جميع الأخطاء حتى لو لم تكن مدرجة ضمن القوانين.<li>
+
+<li>يمنع تكوين عداوة على اسباب تافه مثال ( الضرب بالايدي بسبب مشادة كلاميه - أو شخص صدمك بالمركبة و هرب الخ...)<li>
+
+<li>العداوة لاتكون إلا بثلاث مواقف واقعية أو اكثر.<li>
+
+<li>في حال بينك وبين الشخص عداوة يحق لك اعدامه او تلويته<li>
+
+<li>لا يتم اعتماد العداوة الا من قبل الرقابة ويجب انو يكون معك اثبات على الثلاث مواقف الخاص ب العداوة<li>
+
+<li>يجب ان يكون بين كل موقف و  موقف يوم واحد كحد ادنى <li>
+
+
+<li>يمنع إستخدام الحركات أثناء الفياتات.<li>
+
+<li>يمنع منع باتا لبس ملابس المدنيين ولابد من اختيار شخصية وشكل خاص فيك و بشخصيتك.<li>
+
+<li>يتم فتح تكت الرقابة للحالات الأتية : 
+
+1) شكوى على مواطن  .
+
+2) طلب انعاش في تم اسقاطتك بسبب قلتش ب السيرفر فقط . <li/>
+
+<li>يمنع منع باتا الحديث وانت مسقط باي شكل من الاشكال . <li>
+
+<li>يمنع منع باتا التلفيت وانت مسقط بوقت السيناريو .<li>
+
+<li>يمنع منع باتا الاتصال على تلفون الشرطة او طلب عساكر عن طريق 911 لاسباب تافهة ويتم استعمالها فقط للحالات الطارئة .<li>
+
+<li>يمنع المشاركة ب شخصيتين مختلفتين في سيناريو واحد او البث الواحد .<li>
+
+<li>يمنع استعمال الثغرة ومن يكتشف ثغرة يجب ان ترفع عليها تكت برمجة  .<li>
+
+<li>اي شخص يتم تبنيده ثلاث مرات سوف يتم سحب تفعليه واعادة تفعليه مره اخرى .<li>
+
+<li>يجب احترام وزارة الصحة و موظفينها ومن يخالف :<li>
+
+<li>اذا كنت مواطن : يتم القبض عليك وسجنك على ما يقل عن 350 شهر و تغريمك بغرامه قدرها 250$ الف .<li>
+
+<li>اذا كنت من الوزارات الاخرى ( الشرطه ، العدل ): يتم انزالك رتبه بقرار من وزير العدل و ايضاً تغريمك بغرامه قدرها 280$ الف .<li>
+
+<li>يمنع سرقة او اعطاء السيارة في الحالات الأتية :
+
+1) سيارات العساكر و الاسعاف . 
+
+2)سيارات شيخ المعارض . 
+
+3) سيارات المتجر . </li>
+
+<li>يجب على اصحاب المشاريع مثل ( المطاعم - الورش ) الالتزام ب اللبس الرسمي للمشروع اثناء ممارسة العمل ويمنع لبس ملابس عصابات اثناء العمل في المشاريع .<li>
+
+<li>ويمنع اعطاء الرتب لاكثر من ثلاث اشخاص كحد اقصى في المشاريع .<li>
+
+<li>يمنع التفاعل مع الرقابي و الرد عليه . <li>
+
+<li>يمنع منعاً باتاً اخذ اغراض من الشقه التي استأجرتها ( اذا شفت اغراض من الشقه التي استأجرتها يرجى فتح تكت رقابه لكي يتم تصفير الشقه ) .<li>
+
+<li>وكذلك لن يتم التعويض عن الاغراض الي راحت عليك داخل الشقق انت لما تستأجر الشقه عندك اياها اسبوع بعدها تختفي وهذا ضمن الرول لذلك يمنع فتح تكت تعويض عليها .<li>
+
+<li>يمنع منعاً باتاً طلب مسعف اثناء الفايت يسمحلك طلب مسعف بعد انتهاء الفايت .<li>
+
+<li>يمنع منعاً باتاً سرقة اغراض المواطنين من مركباتهم داخل المناطق الأمنة .<li>
+
+<li>يمنع منعًا باتًا اضافة اي كاميرا مراقبة في المناطق الامنة او داخل المناطق الامنة .<li>
+
+<li>يمنع منعاً باتاً حمل مواطن وانت سائق للمركبة او دباب باي شكل من الاشكال .<li>
+
+<li>يمنع استعمال سيارات الوظائف للاعمال الاجرامية او استعملها للهروب من العساكر و المطاردة.<li>
+
+
+
+          </ol>
+        </div>
+
+     
+       
+    
+    </section>
+
+    <!-- Rules Military -->
+    <section id="rules_military" class="section" aria-labelledby="rules_military_title">
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:16px">
+        <div style="background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
+          <h2 id="rules_military_title">قوانين العسكرية</h2>
+          <ol style="margin-top:12px;color:var(--muted)">
+            <li> تتم المداهمة عن طريق رئيس الشرطة ونائبه ومساعده والقائد الأعلى ومسؤولين السوات فقط.<li>
+
+<li> القانون الأول لدى رجال الامن هو الاحترام.<li>
+
+<li> في حال حدوث أي مخالفة سواء بـالرول بلاي أو قوانين الشرطة سوف يتم محاسبة مسؤول الحالة فقط ويتحمل مسؤولية الأفراد.<li>
+
+<li> يجب على العسكري عدم إخراج السلاح إلا بعد أن يقوم المجرم بإخراج سلاحه.<li>
+
+<li> يجب على العسكري إستخدام نفس فئة الاسلحة "خفيف,ثقيل" المستخدمة من المجرم بـ إستثناء المداهمات.<li>
+
+<li> على جميع العساكر والأفراد عدم إستخدام الأسلحة النارية في حال إستخدام المجرم سلاح أبيض إلا في حالة مهاجمة المجرم للعسكري.<li>
+
+<li> يجب أن يكون رجل الأمن مهذب تجاه المواطنين ومع زملائهم , يجب أن يكون لبقاً في أداء واجبه، متحكم في أعصابه ويتحمل أقصى درجات الصبر وتقدير.<li>
+
+<li> يجب على رجال الأمن تطبيق القانون ، حين أداء واجبهم ، إحترام وحماية كرامة الإنسان والحفاظ على حقوق الإنسان.<li>
+
+<li> لا يحق لرجال الأمن استخدام القوة الجبرية إلا عند الضرورة القصوى أو عند الإعتداء فقط.<li>
+
+<li> لا يجوز لرجل الأمن التوقيع على عريضة أو عقد بإسم قطاع الشرطة ، دون إذن من قائد الشرطة.<li>
+
+<li> التحية العسكرية تصرف من رتبة ظابط صف وما بعدها من رتب عليا ولا تكون إلا في مواقع العمل العسكري.<li>
+
+<li> هناك قوانين كثيرة يجب عليك إدراكها حتى في حال عدم ذكرها , أي إعطاء كل موقف حقه بشكل واقعي ومعقول.<li>
+
+<li> شروط الهروب الآمن :<li>
+
+<li> عدم دخول الورشة أو تعديل المركبة بأي شكل من الاشكال.<li>
+<li> عدم التدخل الخارجي .<li>
+<li> عدم التوجه للبحر .<li>
+<li> عدم رفع السلاح الناري على العساكر بشكل صريح وواضح .<li>
+<li>عدم تعريض حياة المواطنين بشكل متعمد وواضح ومتكرر .<li>
+<li> عدم ادخال سلاحك بعد مرور 10 ثواني من نزولك من المركبة و هروبك على الأقدام (يتم طلق النار عليك بشكل فوري على الأقدام أو الأطراف) .<li>
+<li> عكس السير 3 مرات يفشل عليك الهروب الامن .<li>
+
+<li> يحق للمواطن عند إستيقافه من قبل الشرطة معرفة اسم الشرطي والقطاع الذي يعمل به وسبب إستيقافه .<li>
+
+<li>يحق للمواطن إلتزام الصمت وطلب محامي في حال التوفر .<li>
+
+<li>يمنع إهانة الشرطي والإستهزاء به تحت أي ظرف كان, ويجب مراعاة مكانته الوظيفية.<li>
+
+<li> يجب على الشرطي تنبيه المجرم بتسليم نفسه قبل الاشتباك معه.<li>
+
+<li> يحق للشرطة دخول ممتلكات المجرم في حال هروبه ودخوله للمنزل مباشرة أثناء الهروب.<li>
+
+<li>يمنع إزعاج السلطات بأي طريقة كانت وإرسال البلاغات بشكل مستمر ومتكرر .<li>
+
+<li> يمنع استعمال الشاشات العسكرية من قبل العساكر الا بأمر من الظباط.<li>
+
+<li>يمنع على جميع العساكر تسليم اي عتاد عسكري او تهريبه للمجرمين داخل المدينة باي شكل من الاشكال و يعتبر مخالفة رقابية.<li> 
+
+<li>اما نقل المعلومات الى المجرمين او تهريب مجرم من السجن مسموح رقابيا ولكن ممنوع عسكريا .<li>
+
+<li>يتم تيزرة المواطن كل 5 ثواني من عسكري واحد فقط . <li>
+
+
+<li>المخالفات العسكرية يتم المحاسبة عليها من قبل رئاسة الشرطة او المحكمة ولا تعتبر مخالفة رقابية .<li>
+
+
+            <li></li>
+          </ol>
+        </div>
+
+      
+      </div>
+    </section>
+
+    <!-- Rules Crime -->
+    <section id="rules_crime" class="section" aria-labelledby="rules_crime_title">
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:16px">
+        <div style="background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)">
+          <h2 id="rules_crime_title">قوانين الإجرام</h2>
+          <ol style="margin-top:12px;color:var(--muted)">
+            
+
+<li>التقديم على فتح العصابة يكون عن طريق موقع متجر السيرفر  أو مسؤولين المتجر والعصابات.<li>
+
+<li>لا يمكن للعصابات الإتحاد في الفايت أو العداوة مع عصابة أخرى سواء  أو مع الشرطة إلا في حال حرب كبرى بالمدينة من قبل مسؤولي المافيا.<li>
+
+
+<li>في حال وقع فايت بين عصابتين في مكان مأهول بالسكن يحق للشرطة التدخل بشكل مباشر و إذا كان في مكان نائي يحق للشرطة التدخل بشكل غير مباشر.<li>
+
+<li>لا يتم اعتماد العداوة بشكل رسمي الا من قبل رئيس المافيا <li>
+
+اسباب العداوة بين العصابات :<li>
+
+1) خطف مسؤول العصابة او نائبة 
+
+2) ازالة بخاخ العصابة 
+
+3) محاولة افتعال مشاكل مع العصابة <li>
+
+في حال يوجد عداوة بين العصابات  : <li>
+
+1) يمنع اعدام اي شخص من العصابات المتعادية الا بأمر  من مسوؤل العصابات 
+
+2) يسمح تلويت السلاح و الرصاص من الشخص فقط (ومن يخالف يتحاسب من قبل الرقابة) 
+
+3) مدة العداوة اسبوع واحد فقط من وقت اعتماد العداوة ويمنع ادخال عصابة اخرى او العساكر في العداوة<li>
+
+ 
+<li>عند وجود أى تعدي من أفراد العصابة على قوانين العصابات سيتم إتخاذ العقوبات اللازمة مع العصابة.<li>
+
+<li>عند وجود أى تعدي من أفراد العصابة على قوانين العصابات سيتم إتخاذ العقوبات اللازمة مع العصابة.<li>
+
+
+<li>يمنع إستقطاب أعضاء العصابة بشكل عشوائي ويجب أن يوجد ثقة مبنية داخل الرول بلاي كحد ادنى اسبوع من المعرفة.<li>
+
+
+<li>قائد العصابة هو المسؤول الأول والأخير أمام المافيا في المخالفات الجماعية.<li>
+
+
+<li>تعطى العصابة تحذير أو أكثر في حال مخالفة القوانين وعند التكرار قد تصل إلى إغلاق العصابة دون إرجاع المال في حال الشراء.<li>
+
+<li>الحد الاقصى ل اعضاء العصابة هو 15 عضو .<li>
+
+
+<li>في حال عدم التواجد أو التفاعل في أي عصابة من العصابات المتاحة سيتم إغلاق العصابة دون إرجاع المال في حال الشراء.<li>
+
+
+<li>عدد الورنات لإغلاق العصابة 3 ورنات فقط.<li>
+
+
+<li>لن يتم إلغاء وارن العصابة إلا بعد أسبوع من أخذ الوارن ويجب الإلتزام.<li>
+
+
+<li>في حال أخذت العصابة وارنين سيتم مضاعفة مدة الورنات على العصابة.<li>
+
+<li>يحق للمافيا تعديل أو حذف أو إضافة القوانين في أى وقت ويجب مراجعة القوانين من حين لآخر .<li>
+
+<li>يمنع اتحاد العصابات في السرقات او المهام الا بأمر من المافيا ومن يخالف سوف يتحاسب من قبل الرقابة <li>
+
+يجب على العصابة الالتزام ب لبس العصابة الرسمي ويمنع على اي عضو ارتداء لبس اخر<li>
+<li>ولا يتم احتساب من لا يرتدي لبس العصابة ب العصابة سواء ب المهام او ب العداوة 
+
+
+          </ol>
+        </div>
+
+       
+      </div>
+    </section>
+
+    <!-- Exam (general) -->
+    <section id="exam" class="section" aria-labelledby="exam_title">
+      <h2 id="exam_title">الاختبار الإلكتروني </h2>
+      <p style="color:var(--muted);margin-bottom:12px"></p>
+
+      <form id="quizForm" class="quiz" onsubmit="return false" aria-live="polite">
+        <div class="q">
+          <div class="q-title"></div>
+لم يتم انشاء الاختبار الالكتروني بعد
+        </div>
+
+     
+
+        <div class="quiz-actions" style="margin-top:8px">
+          <div style="text-align: center; margin-top: 20px;">
+  <button style="
+    background-color: #000000;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 1px 1px;
+    border-radius: 50px;
+    cursor: pointer;
+  ">
+  </a>
+</div>
+
+        </div>
+
+        <div id="quizResult" style="margin-top:12px;color:var(--muted)"></div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo" style="display:flex;justify-content:space-between;align-items:center;padding:12px;color:var(--muted);font-size:13px">
+    <div>© <span id="year"></span> STOVE CITY RP— كل الحقوق محفوظة</div>
+    <div style="color:var(--muted)"></div>
+  </footer>
+</div>
+
+<!-- Product modal -->
+<div id="modalBack" class="modal-back" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" role="document">
+    <h3 id="modalTitle">عنوان المنتج</h3>
+    <p id="modalDesc">تفاصيل المنتج...</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+      <button class="btn ghost" onclick="closeModal()">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- Admin modal -->
+<div id="adminBack" class="modal-back" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" role="document" style="max-height:80vh;overflow:auto">
+    <h3>لوحة الإدارة</h3>
+    <div style="margin-top:8px;color:var(--muted)">
+      قم بإدارة محاولات الاختبارات: عرض النتائج، السماح بإعادة المحاولة، حذف المحاولات، أو تصدير CSV.
+    </div>
+
+    <div style="margin-top:12px">
+      <label style="display:block;color:var(--muted);margin-bottom:6px">البحث باسم المستخدم:</label>
+      <input id="adminSearch" type="text" placeholder="اكتب اسم المستخدم..." style="padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;width:100%">
+    </div>
+
+    <div id="adminContent" style="margin-top:12px"></div>
+
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+      <button class="btn ghost" onclick="closeAdmin()">إغلاق</button>
+      <button class="btn primary" onclick="exportCSV()">تصدير CSV</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Data model =====
+Structure stored in localStorage under key 'fivem_test_db':
+{
+  jobs: [ { id, key, title, desc, questions: [ {q, options:[..], correctIndex} ] }, ... ],
+  attempts: { "<jobKey>": { "<username>": { answers: [...], score: n, date: ISO, canRetake: false } } }
+}
+*/
+const STORAGE_KEY = 'fivem_test_db_v1';
+
+// default admin password (غيّره بعد الرفع)
+const ADMIN_PASS = 'مبرمجين ستوف اقوى مبرمجين';
+
+/* ===== Default jobs & questions (قابلة للتعديل) ===== */
+const defaultJobs = [
+  {
+    id: 1,
+    key: 'military',
+    title: 'الوظيفة — العسكرية',
+    desc: 'اختبار قبول للعمل بالقوات العسكرية — مقررات الانضباط والأوامر.',
+    questions: [
+      { q: 'هل اتباع أوامر القائد إلزامي أثناء المهمة؟', options: ['لا','نعم'], correctIndex:1 },
+      { q: 'هل يجوز مغادرة المهمة دون إذن؟', options: ['نعم','لا'], correctIndex:1 },
+      { q: 'هل يمكن استخدام الأسلحة في المناطق المدنية؟', options: ['أحياناً','لا'], correctIndex:1 },
+      { q: 'هل التنسيق الصوتي مطلوب أثناء العمليات؟', options: ['نعم','لا'], correctIndex:0 },
+      { q: 'هل تقارير المخالفات تُعرض للإدارة؟', options: ['نعم','لا'], correctIndex:0 }
+    ]
+  },
+  {
+    id: 2,
+    key: 'health_ministry',
+    title: 'الوظيفة — وزارة الصحة',
+    desc: 'اختبار قبول للعمل مع الطاقم الطبي — معايير السلامة الأولية والتعامل مع الإصابات.',
+    questions: [
+      { q: 'هل يجب إعطاء الإسعافات الأولية في حالات الطوارئ؟', options: ['نعم','لا'], correctIndex:0 },
+      { q: 'هل يجوز نقل مصاب بدون التأكد من التهوية والتنفس؟', options: ['نعم','لا'], correctIndex:1 },
+      { q: 'هل يجب تعقيم الأدوات قبل الاستخدام؟', options: ['نعم','لا'], correctIndex:0 },
+      { q: 'هل تبليغ الجهات المختصة إلزامي في حالات خطيرة؟', options: ['نعم','لا'], correctIndex:0 },
+      { q: 'هل يجوز تجاهل تعليمات المشرف الطبي؟', options: ['نعم','لا'], correctIndex:1 }
+    ]
+  },
+{
+  id: 3,
+  key: 'justice',
+  title: 'الوظيفة — وزارة العدل',
+  desc: 'اختبار قبول للعمل في وزارة العدل — القوانين، الإجراءات القضائية، والالتزام النظامي.',
+  questions: [
+    { q: 'هل الالتزام بالأنظمة والتعليمات القضائية إلزامي؟', options: ['نعم','لا'], correctIndex: 0 },
+    { q: 'هل يجوز التلاعب بالأدلة أو إخفاؤها؟', options: ['نعم','لا'], correctIndex: 1 },
+    { q: 'هل يجب التعامل مع القضايا بسرية تامة؟', options: ['نعم','لا'], correctIndex: 0 },
+    { q: 'هل يحق لموظف العدل اتخاذ قرار بدون الرجوع للنظام؟', options: ['نعم','لا'], correctIndex: 1 },
+    { q: 'هل احترام المتقاضين واجب على موظف وزارة العدل؟', options: ['نعم','لا'], correctIndex: 0 }
+  ]
+}
+  ];
+
+/* ===== Utilities: load/save DB ===== */
+function loadDB(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw){
+    const db = { jobs: defaultJobs, attempts: {} };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+    return db;
+  }
+  try{ return JSON.parse(raw); } catch(e){ console.error('DB parse error',e); localStorage.removeItem(STORAGE_KEY); return loadDB(); }
+}
+function saveDB(db){ localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); }
+
+/* ===== UI init ===== */
+let db = loadDB();
+const jobsGrid = document.getElementById('jobsGrid');
+function renderJobs(){
+  jobsGrid.innerHTML = '';
+  db.jobs.forEach(job=>{
+    const el = document.createElement('article');
+    el.className = 'job-card';
+    el.innerHTML = `
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <h3>${job.title}</h3>
+        <div class="meta">${job.desc}</div>
+        <div class="job-actions">
+          <button class="btn primary" onclick="prepareTest('${job.key}')">اختبار التوظيف</button>
+          <button class="btn ghost" onclick="viewAttempts('${job.key}')">عرض المحاولات</button>
+        </div>
+      </div>
+    `;
+    jobsGrid.appendChild(el);
+  });
+}
+renderJobs();
+
+/* ===== Tabs logic (من الملف السابق) ===== */
+const tabs = document.querySelectorAll('.tab-btn');
+const sections = document.querySelectorAll('.section');
+function openTab(tabId){
+  tabs.forEach(t=> t.classList.toggle('active', t.getAttribute('data-tab')===tabId));
+  sections.forEach(s=> s.classList.toggle('active', s.id===tabId));
+  tabs.forEach(t => t.setAttribute('aria-current', t.classList.contains('active') ? 'true' : 'false'));
+  // hide test area if left jobs tab
+  if(tabId !== 'jobs') hideTestArea();
+}
+tabs.forEach(btn=> btn.addEventListener('click', ()=> openTab(btn.getAttribute('data-tab'))));
+
+/* ===== Product modal (from previous) ===== */
+const modalBack = document.getElementById('modalBack');
+function openProduct(title, desc){ document.getElementById('modalTitle').textContent = title; document.getElementById('modalDesc').textContent = desc; modalBack.classList.add('open'); modalBack.setAttribute('aria-hidden','false'); }
+function closeModal(){ modalBack.classList.remove('open'); modalBack.setAttribute('aria-hidden','true'); }
+modalBack.addEventListener('click', (e)=>{ if(e.target===modalBack) closeModal(); });
+
+/* ===== Test workflow ===== */
+let currentJob = null;
+let currentApplicant = null;
+
+const testContainer = document.getElementById('testContainer');
+const testJobTitle = document.getElementById('testJobTitle');
+const testJobDesc = document.getElementById('testJobDesc');
+const attemptStatus = document.getElementById('attemptStatus');
+const userEntry = document.getElementById('userEntry');
+const applicantNameInput = document.getElementById('applicantName');
+const startTestBtn = document.getElementById('startTestBtn');
+const cancelTestBtn = document.getElementById('cancelTestBtn');
+const testForm = document.getElementById('testForm');
+const questionsWrap = document.getElementById('questionsWrap');
+const submitTestBtn = document.getElementById('submitTestBtn');
+const testResult = document.getElementById('testResult');
+
+function prepareTest(jobKey){
+  currentJob = db.jobs.find(j=> j.key === jobKey);
+  if(!currentJob) return alert('الوظيفة غير موجودة');
+  testJobTitle.textContent = currentJob.title;
+  testJobDesc.textContent = currentJob.desc;
+  attemptStatus.textContent = 'لم تبدأ';
+  applicantNameInput.value = '';
+  testResult.textContent = '';
+  questionsWrap.innerHTML = '';
+  testForm.style.display = 'none';
+  userEntry.style.display = 'block';
+  testContainer.style.display = 'block';
+  openTab('jobs'); // ensure jobs tab active
+  // check if user already attempted? only after they input name
+}
+
+/* start test */
+startTestBtn.addEventListener('click', ()=>{
+  const name = applicantNameInput.value.trim();
+  if(!name) return alert('اكتب اسمك أولاً');
+  currentApplicant = sanitizeName(name);
+  // check attempt
+  const attempts = loadDB().attempts || {};
+  const jobAttempts = attempts[currentJob.key] || {};
+  const existing = jobAttempts[currentApplicant];
+  if(existing && existing.score !== undefined && !existing.canRetake){
+    // already attempted and can't retake
+    attemptStatus.textContent = 'مكتمل — لا يحق إعادة الاختبار';
+    testForm.style.display = 'none';
+    userEntry.style.display = 'block';
+    alert('تم تقديم الاختبار سابقًا. لا يمكنك إعادة الاختبار إلا إذا منحتك الإدارة إذنًا.');
+    return;
+  }
+  // render questions
+  renderQuestions(currentJob);
+  attemptStatus.textContent = existing ? 'معطى إذن لإعادة الاختبار' : 'قيد الإجابة';
+  userEntry.style.display = 'none';
+  testForm.style.display = 'block';
+});
+
+/* cancel */
+cancelTestBtn.addEventListener('click', ()=>{ hideTestArea(); });
+
+function hideTestArea(){ testContainer.style.display = 'none'; currentJob = null; currentApplicant = null; testForm.style.display='none'; userEntry.style.display='block'; }
+
+/* render questions */
+function renderQuestions(job){
+  questionsWrap.innerHTML = '';
+  job.questions.forEach((qObj, idx)=>{
+    const qDiv = document.createElement('div');
+    qDiv.className = 'q';
+    qDiv.style.marginBottom = '10px';
+    let html = `<div class="q-title" style="font-weight:800;color:#fff;margin-bottom:6px">سؤال ${idx+1}: ${escapeHtml(qObj.q)}</div>`;
+    qObj.options.forEach((opt, oidx)=>{
+      const id = `q_${job.key}_${idx}_${oidx}`;
+      html += `<label style="display:block;margin-top:6px"><input type="radio" name="q${idx}" value="${oidx}" id="${id}"> ${escapeHtml(opt)}</label>`;
+    });
+    qDiv.innerHTML = html;
+    questionsWrap.appendChild(qDiv);
+  });
+}
+
+/* submit test */
+submitTestBtn.addEventListener('click', ()=>{
+  const answers = [];
+  let allAnswered = true;
+  currentJob.questions.forEach((q, idx)=>{
+    const v = document.querySelector(`input[name="q${idx}"]:checked`);
+    if(!v) allAnswered = false;
+    answers.push(v ? parseInt(v.value,10) : null);
+  });
+  if(!allAnswered) return alert('جاوب كل الأسئلة قبل الإرسال');
+  // calculate score
+  let score = 0;
+  currentJob.questions.forEach((q, idx)=>{
+    if(answers[idx] === q.correctIndex) score++;
+  });
+  const attempt = { answers, score, date: (new Date()).toISOString(), canRetake: false };
+  // save to db
+  db = loadDB();
+  db.attempts = db.attempts || {};
+  db.attempts[currentJob.key] = db.attempts[currentJob.key] || {};
+  db.attempts[currentJob.key][currentApplicant] = attempt;
+  saveDB(db);
+  testResult.textContent = `تم الإرسال. نتيجتك: ${score} من ${currentJob.questions.length}. سيتم تسجيل المحاولة ولا يمكنك إعادة الاختبار إلا بإذن الإدارة.`;
+  attemptStatus.textContent = 'مكتمل — تحتاج إذن إدارة لإعادة الاختبار';
+  testForm.style.display = 'none';
+  userEntry.style.display = 'block';
+});
+
+/* view attempts (user-level quick view) */
+function viewAttempts(jobKey){
+  const attempts = loadDB().attempts || {};
+  const jobAttempts = attempts[jobKey] || {};
+  const keys = Object.keys(jobAttempts);
+  if(keys.length === 0) return alert('لا توجد محاولات لهذا الاختبار بعد.');
+  let msg = 'محاولات الاختبار:\n\n';
+  keys.forEach(u=>{
+    const a = jobAttempts[u];
+    msg += `المستخدم: ${u} — النتيجة: ${a.score}/${db.jobs.find(j=>j.key===jobKey).questions.length} — تاريخ: ${new Date(a.date).toLocaleString()} — إعادة مسموحة: ${a.canRetake ? 'نعم' : 'لا'}\n`;
+  });
+  alert(msg);
+}
+
+/* ===== Admin panel ===== */
+const adminBack = document.getElementById('adminBack');
+const adminContent = document.getElementById('adminContent');
+const adminSearch = document.getElementById('adminSearch');
+document.getElementById('openAdmin').addEventListener('click', openAdmin);
+
+function openAdmin(){
+  const pass = prompt('ادخل كلمة مرور الادارة:');
+  if(pass === null) return;
+  if(pass !== ADMIN_PASS){ alert('كلمة المرور خاطئة'); return; }
+  adminBack.classList.add('open'); adminBack.setAttribute('aria-hidden','false');
+  renderAdminContent();
+}
+
+function closeAdmin(){ adminBack.classList.remove('open'); adminBack.setAttribute('aria-hidden','true'); adminContent.innerHTML=''; adminSearch.value=''; }
+
+adminSearch.addEventListener('input', ()=> renderAdminContent());
+
+function renderAdminContent(){
+  db = loadDB();
+  const filter = adminSearch.value.trim().toLowerCase();
+  if(!db.attempts || Object.keys(db.attempts).length === 0){ adminContent.innerHTML = '<div style="color:var(--muted)">لا توجد محاولات حتى الآن.</div>'; return; }
+  let html = '<table class="table"><thead><tr><th>الوظيفة</th><th>المستخدم</th><th>النتيجة</th><th>التاريخ</th><th>إعادة</th><th>عرض الإجابات</th><th>حذف</th></tr></thead><tbody>';
+  Object.keys(db.attempts).forEach(jobKey=>{
+    const job = db.jobs.find(j=> j.key === jobKey);
+    if(!job) return;
+    Object.keys(db.attempts[jobKey]).forEach(user=>{
+      if(filter && !user.toLowerCase().includes(filter) && !job.title.includes(filter)) return;
+      const a = db.attempts[jobKey][user];
+      html += `<tr>
+        <td style="text-align:right">${escapeHtml(job.title)}</td>
+        <td style="text-align:right">${escapeHtml(user)}</td>
+        <td style="text-align:right">${a.score}/${job.questions.length}</td>
+        <td style="text-align:right">${new Date(a.date).toLocaleString()}</td>
+        <td style="text-align:right">
+          <button class="small-btn ${a.canRetake ? 'success' : 'warning'}" onclick="toggleRetake('${jobKey}','%24%7buser.replace(/index.html'/g,"\\'")}')">${a.canRetake ? 'مسموح' : 'ممنوع'}</button>
+        </td>
+<td style="text-align:right">
+  <button class="small-btn ghost" onclick="showAnswers('${jobKey}','${user.replace(/'/g,"\\'")}')">
+    عرض
+  </button>
+</td>
+        <td style="text-align:right"><button class="small-btn ghost" onclick="deleteAttempt('${jobKey}','${user.replace(/'/g,"\\'")}')">حذف</button></td>
+      </tr>`;
+    });
+  });
+  html += '</tbody></table>';
+  adminContent.innerHTML = html;
+}
+
+/* admin actions */
+function toggleRetake(jobKey, user){
+  db = loadDB();
+  if(!db.attempts || !db.attempts[jobKey] || !db.attempts[jobKey][user]) return alert('المحاولة غير موجودة.');
+  db.attempts[jobKey][user].canRetake = !db.attempts[jobKey][user].canRetake;
+  saveDB(db);
+  renderAdminContent();
+}
+
+function showAnswers(jobKey, user){
+  db = loadDB();
+  const job = db.jobs.find(j => j.key === jobKey);
+  const attempt = db.attempts?.[jobKey]?.[user];
+
+  if(!job || !attempt){
+    alert('لا توجد بيانات');
+    return;
+  }
+
+  let text = `
+المستخدم: ${user}
+الوظيفة: ${job.title}
+النتيجة: ${attempt.score} / ${job.questions.length}
+التاريخ: ${new Date(attempt.date).toLocaleString()}
+
+====================
+الأسئلة والإجابات:
+====================
+`;
+
+  job.questions.forEach((q, i) => {
+    const userAnswerIndex = attempt.answers[i];
+    const correctIndex = q.correctIndex;
+
+    text += `
+${i+1}) ${q.q}
+
+- إجابة المتقدم:
+${userAnswerIndex === null ? 'لم يجب' : q.options[userAnswerIndex]}
+${userAnswerIndex === correctIndex ? '✅' : '❌'}
+
+- الإجابة الصحيحة:
+${q.options[correctIndex]}
+
+--------------------
+`;
+  });
+
+  alert(text);
+}
+
+
+function deleteAttempt(jobKey, user){
+  if(!confirm('هل متأكد أنك تريد حذف هذه المحاولة؟')) return;
+  db = loadDB();
+  if(db.attempts?.[jobKey]?.[user]){ delete db.attempts[jobKey][user]; saveDB(db); renderAdminContent(); alert('تم الحذف'); }
+}
+
+/* export CSV */
+function exportCSV(){
+  db = loadDB();
+  const rows = [['الوظيفة','المستخدم','النتيجة','التاريخ','إعادة مسموحة','إجابات']];
+  Object.keys(db.attempts || {}).forEach(jobKey=>{
+    const job = db.jobs.find(j=> j.key===jobKey);
+    Object.keys(db.attempts[jobKey]).forEach(user=>{
+      const a = db.attempts[jobKey][user];
+      const answersText = a.answers.map(x=> x===null ? '—' : x).join('|');
+      rows.push([job ? job.title : jobKey, user, `${a.score}/${job.questions.length}`, new Date(a.date).toLocaleString(), a.canRetake ? 'نعم' : 'لا', answersText]);
+    });
+  });
+  const csv = rows.map(r=> r.map(cell => `"${String(cell).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `fivem_attempts_${(new Date()).toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ===== Helpers ===== */
+function sanitizeName(name){ return name.replace(/\s+/g,'_').replace(/[^\w\-ء-ي_]/g,''); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]) }); }
+
+/* ===== Small initialization ===== */
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('year').textContent = new Date().getFullYear();
+  setTimeout(()=>{
+    const st = document.getElementById('server-status');
+    const pc = document.getElementById('player-count');
+    if(st) st.textContent = 'BADER';
+    if(pc) pc.textContent = 'TFA7A , DRAVI';
+    const dlink = document.getElementById('discord-link');
+    if(dlink) dlink.href = 'https://discord.gg/lcrp';
+  }, 400);
+});
+
+/* ===== Utility: show answers from non-admin (optional) ===== */
+/* The site owner requested admin-only viewing — hence showAnswers is in admin only. */
+
+/* ===== Small extra: viewAnswers through prompt (for owner quick check) ===== */
+function showAnswersQuickPrompt(){
+  const jobKey = prompt('اكتب مفتاح الوظيفة (مثال: military, health_ministry, traffic_roads):');
+  const user = prompt('اسم المستخدم:');
+  if(!jobKey || !user) return;
+  openAdmin();
+  // after admin login, filter
+  adminSearch.value = user;
+  renderAdminContent();
+}
+
+/* ===== Accessibility: keyboard tab switching ===== */
+document.addEventListener('keydown', (e)=>{
+  if(e.altKey && (e.key === '1' || e.key === '2' || e.key==='3' || e.key==='4' || e.key==='5' || e.key==='6')){
+    const index = parseInt(e.key,10)-1;
+    if(tabs[index]) tabs[index].click();
+  }
+});
+</script>
+</body>
+
+<!-- Mirrored from stove-city-store.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 26 Dec 2025 16:15:59 GMT -->
+</html>
